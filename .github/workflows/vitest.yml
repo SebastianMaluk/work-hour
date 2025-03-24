@@ -1,0 +1,33 @@
+name: Unit Tests
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  test:
+    timeout-minutes: 5
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [20]
+
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Setup Dependencies
+      uses: ./.github/actions/setup-dependencies
+      with:
+        node-version: ${{ matrix.node-version }}
+        
+    - name: Run Vitest tests
+      run: pnpm test:unit run --coverage-enabled
+        
+    - name: Upload coverage reports
+      if: ${{ !cancelled() }}
+      uses: actions/upload-artifact@v4
+      with:
+        name: unit-test-report
+        path: vitest-report/
+        retention-days: 30

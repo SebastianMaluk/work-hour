@@ -1,0 +1,26 @@
+{
+  "name": "work-hour",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "node build.js",
+    "watch": "node build.js --watch",
+    "test": "vitest run --config vitest.config.js & playwright test --project chromium",
+    "test:unit": "vitest --config vitest.config.js",
+    "test:e2e": "playwright test --project chromium",
+    "test:e2e:ci": "playwright test"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.5.2",
+  "devDependencies": {
+    "@playwright/test": "^1.51.1",
+    "@types/node": "^22.13.11",
+    "esbuild": "^0.25.1",
+    "jsdom": "^26.0.0",
+    "playwright": "^1.51.1",
+    "vitest": "^3.0.9"
+  }
+}

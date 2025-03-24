@@ -1,0 +1,35 @@
+name: End-to-End Tests
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  test:
+    timeout-minutes: 10
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [20]
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Setup Dependencies
+      uses: ./.github/actions/setup-dependencies
+      with:
+        node-version: ${{ matrix.node-version }}
+    
+    - name: Install Playwright Browsers
+      run: pnpm dlx playwright install --with-deps
+      shell: bash
+        
+    - name: Run Playwright tests
+      run: pnpm test:e2e:ci
+      
+    - uses: actions/upload-artifact@v4
+      if: ${{ !cancelled() }}
+      with:
+        name: end-to-end-report
+        path: playwright-report/
+        retention-days: 30
