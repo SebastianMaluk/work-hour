@@ -8,7 +8,7 @@
     "watch": "node build.js --watch",
     "test": "vitest run --config vitest.config.js & playwright test --project chromium",
     "test:unit": "vitest --config vitest.config.js",
-    "test:e2e": "playwright test --project chromium",
+    "test:e2e": "playwright test --project chromium --ui",
     "test:e2e:ci": "playwright test"
   },
   "keywords": [],
