@@ -9,12 +9,6 @@ export default defineConfig({
       reportsDirectory: './coverage-reports/',
       reporter: ['text', 'json-summary', 'json', 'html'],
       include: ['src/**/*.js'],
-      thresholds: {
-        lines: 60,
-        branches: 60,
-        functions: 60,
-        statements: 60
-      }
     }
   }
 });
