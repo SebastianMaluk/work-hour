@@ -11,7 +11,7 @@ test.describe('Solotodo Live Tests', () => {
     
     await verifyWorkingTimeElements(page);
     
-    await page.screenshot({ path: 'test-results/solotodo-homepage.png' });
+    await page.screenshot({ path: 'playwright-results/solotodo-homepage.png' });
   });
   
   test('should add working time to a product page', async ({ page }) => {
@@ -21,8 +21,8 @@ test.describe('Solotodo Live Tests', () => {
     await injectExtension(page);
     
     await verifyWorkingTimeElements(page);
-    
-    await page.screenshot({ path: 'test-results/solotodo-product.png' });
+  
+    await page.screenshot({ path: 'playwright-results/solotodo-product.png' });
   });
   
   test('should add working time to a category page', async ({ page }) => {
@@ -34,6 +34,6 @@ test.describe('Solotodo Live Tests', () => {
     // Category pages should have multiple product cards
     await verifyWorkingTimeElements(page, 2);
     
-    await page.screenshot({ path: 'test-results/solotodo-category.png', fullPage: true });
+    await page.screenshot({ path: 'playwright-results/solotodo-category.png', fullPage: true });
   });
 });
