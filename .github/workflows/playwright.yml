@@ -23,6 +23,10 @@ jobs:
     - name: Install Playwright Browsers
       run: pnpm dlx playwright install --with-deps
       shell: bash
+    
+    - name: Build the project
+      run: pnpm build
+      shell: bash
         
     - name: Run Playwright tests
       run: pnpm test:e2e:ci
