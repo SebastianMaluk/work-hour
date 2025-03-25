@@ -6,6 +6,7 @@ export default defineConfig({
     globals: true,
     include: ['test/unit/**/*.test.js'],
     coverage: {
+      reportsDirectory: './coverage-reports/',
       reporter: ['text', 'json-summary', 'json', 'html'],
       include: ['src/**/*.js'],
       thresholds: {
