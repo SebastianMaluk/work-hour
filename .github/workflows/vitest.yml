@@ -22,7 +22,7 @@ jobs:
         node-version: ${{ matrix.node-version }}
         
     - name: Run Vitest tests
-      run: pnpm test:unit run --coverage-enabled
+      run: pnpm test:unit run --coverage
         
     - name: Upload coverage reports
       if: ${{ !cancelled() }}
