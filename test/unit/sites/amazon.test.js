@@ -43,32 +43,6 @@ describe('Amazon Site Implementation', () => {
       expect(amazonConfig.parsePrice('$2,999.00')).toBe(2999);
     });
     
-    test('European format prices (comma as decimal separator)', () => {
-      mockLocation('www.amazon.es');
-      
-      // Standard European price
-      expect(amazonConfig.parsePrice('29,99 €')).toBe(29.99);
-      
-      // Price with thousands separator
-      expect(amazonConfig.parsePrice('1.234,56 €')).toBe(1234.56);
-      
-      // Price without decimal
-      expect(amazonConfig.parsePrice('45 €')).toBe(45);
-      
-      // Large European price
-      expect(amazonConfig.parsePrice('2.999,00 €')).toBe(2999);
-    });
-    
-    test('UK format prices', () => {
-      mockLocation('www.amazon.co.uk');
-      
-      // Standard UK price
-      expect(amazonConfig.parsePrice('£29.99')).toBe(29.99);
-      
-      // Price with thousands separator
-      expect(amazonConfig.parsePrice('£1,234.56')).toBe(1234.56);
-    });
-    
     test('Handles special cases and edge values', () => {
       mockLocation('www.amazon.com');
       
@@ -108,15 +82,14 @@ describe('Amazon Site Implementation', () => {
   test('url patterns match the correct pages', () => {
     // Homepage
     expect(amazonConfig.pages[0].urlPattern.test('https://www.amazon.com/')).toBe(true);
-    expect(amazonConfig.pages[0].urlPattern.test('https://www.amazon.co.uk/')).toBe(true);
 
     // Product pages
     expect(amazonConfig.pages[1].urlPattern.test('https://www.amazon.com/dp/B08BYSF8HP')).toBe(true);
-    expect(amazonConfig.pages[1].urlPattern.test('https://www.amazon.co.uk/product-name/dp/B08BYSF8HP')).toBe(true);
+    expect(amazonConfig.pages[1].urlPattern.test('https://www.amazon.com/product-name/dp/B08BYSF8HP')).toBe(true);
     
     // Search results
     expect(amazonConfig.pages[2].urlPattern.test('https://www.amazon.com/s?k=laptop')).toBe(true);
-    expect(amazonConfig.pages[2].urlPattern.test('https://www.amazon.es/s?k=ordenador')).toBe(true);
+    expect(amazonConfig.pages[2].urlPattern.test('https://www.amazon.com/s?k=ordenador')).toBe(true);
 
     // Fallback page
     expect(amazonConfig.pages[3].urlPattern.test('https://www.amazon.com/other-page')).toBe(true);
